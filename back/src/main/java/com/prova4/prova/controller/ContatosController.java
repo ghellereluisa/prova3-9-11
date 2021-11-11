@@ -2,14 +2,19 @@ package com.prova4.prova.controller;
 
 
 import com.prova4.prova.model.Contatos;
+import com.prova4.prova.repository.ContatosRepository;
 import com.prova4.prova.service.ContatosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+@CrossOrigin(
+        origins = {"*"},
+        maxAge = 3600,
+        allowCredentials = "false")
 
 @RestController
 @RequestMapping("contatos")
@@ -17,6 +22,9 @@ public class ContatosController {
 
     @Autowired
     private ContatosService cServ;
+
+    @Autowired
+    private ContatosRepository cRep;
 
     @GetMapping
     public List<Contatos> listContatos (){
